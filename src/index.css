@@ -41,6 +41,7 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-family: 'Helvetica Neue';
 }
 
 /*
@@ -84,4 +85,43 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+::-webkit-datetime-edit-text {
+  color: gray;
+  padding: 0 0.3em;
+}
+
+::-webkit-datetime-edit-month-field {
+  color: gray;
+}
+
+::-webkit-datetime-edit-day-field {
+  color: gray;
+}
+
+::-webkit-datetime-edit-year-field {
+  color: gray;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url('./images/calendar.svg') no-repeat;
+  padding-right: 1rem;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Remove default arrow */
+  background-image: url(./images/select.svg);
+  background-repeat: no-repeat;
+  background-position: 340px;
+ 
 }
