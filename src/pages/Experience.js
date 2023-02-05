@@ -10,7 +10,7 @@ const Experience = () => {
         <div className='flex justify-center absolute items-center font-semibold text-2xl
          bg-white rounded-full text-[#2E2E2E] w-[40px] h-[40px]
          top-[40px] left-[48px]
-         '><img src={Vector} alt='vector' /></div>
+         '><a href='/info'><img src={Vector} alt='vector' /></a></div>
         <div className=' w-[49.875em] '>
             <h1 className='inline-block align-top float-left text-[1.8125em] font-[700] '>გამოცდილება</h1>
             <p className='inline-block text-black mt-3 align-top float-right font-[500] text-xl'>2/3</p>
@@ -66,12 +66,12 @@ const Experience = () => {
         ml-5 mb-[6.2rem] rounded-[4px] text-[#FFFFFF] font-[500]'>მეტი გამოცდილების დამატება</button>
 
         <div className='flex flex-row-reverse justify-between ml-5 pr-5 mb-[4.0625em]'>
-            <button className=' w-[151px] h-[48px] bg-[#6B40E3] 
+            <a href='/education'><button className=' w-[151px] h-[48px] bg-[#6B40E3] 
                 font-helvetica text-white text-[18px] 
-                tracking-widest font-[500] rounded-[4px] right-[972px]  bottom-[25px]'>შემდეგი</button>
-            <button className=' w-[113px] h-[48px] bg-[#6B40E3] 
+                tracking-widest font-[500] rounded-[4px] right-[972px]  bottom-[25px]'>შემდეგი</button></a>
+            <a href='/experience'><button className=' w-[113px] h-[48px] bg-[#6B40E3] 
                 font-helvetica text-white text-[18px] 
-                tracking-widest font-[500] rounded-[4px] left-[130px]  bottom-[25px]'>უკან</button>
+                tracking-widest font-[500] rounded-[4px] left-[130px]  bottom-[25px]'>უკან</button></a>
         </div>
 
         </div>
