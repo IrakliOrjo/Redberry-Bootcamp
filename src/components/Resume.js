@@ -27,14 +27,15 @@ const Resume = (props) => {
         
         {props.firstName && props.lastName && props.email && props.mobile && <div className='border w-[45.375em] mx-auto mt-5'></div>}
         </div>
-        <img className='absolute hidden rounded-full
+        <img className='absolute rounded-full
         left-[98.3125em] top-[2em]' src={Avatar} alt='avatar'/>
         <div className='flex flex-col justify-around pt-5 pl-[4em]'>
             <div>
                 <p className='text-[#F93B1D] text-[1.2rem] tracking-wide mb-3 font-[700]'>{props.position && 'გამოცდილება'}</p>
                 <p className='text-[1rem] font-semibold tracking-wide
-                 text-[#1A1A1A] mb-1'>{props.position}</p>
-                <p className='text-[#909090] mb-2'>{props.startDate} {props.endDate}</p>
+                 text-[#1A1A1A] mb-1'>{`${props.position}${props.company && ','} ${props.company}`}</p>
+                <p className='text-[#909090] mb-2'>
+                    {`${props.startDate.match(/^\d{4}/) ? props.startDate : ''}  ${props.endDate.match(/^\d{4}/) ? props.endDate : ''}`}</p>
                 <p className='w-[41.375em] text-[#000000] text-[1.1rem] font-[500]'>{props.description}</p>
                      {props.position && <div className='border w-[45.375em] mx-auto mt-7'></div>}
             </div>
@@ -43,8 +44,8 @@ const Resume = (props) => {
             <div>
                 <p className='text-[#F93B1D] text-[1.2rem] tracking-wide mb-3 font-[700]'>{props.education && 'განათლება'}</p>
                 <p className='text-[1rem] font-semibold tracking-wide
-                 text-[#1A1A1A] mb-1'>{props.education}</p>
-                <p className='text-[#909090] mb-3'>{props.educationEndDate}</p>
+                 text-[#1A1A1A] mb-1'>{`${props.education}${props.grade && ','} ${props.grade}`}</p>
+                <p className='text-[#909090] mb-3'>{`${props.educationEndDate.match(/^\d{4}/) ? props.educationEndDate : ''}  `}</p>
                 <p className='w-[41.375em] text-[#000000] text-[1.1rem] font-[500]'>{props.educationDescription} </p>
                      {props.education && <div className='border w-[45.375em] mx-auto mt-7'></div>}
             </div>

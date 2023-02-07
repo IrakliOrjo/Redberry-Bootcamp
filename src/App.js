@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 
+import { format } from 'date-fns'
+
 import Logo from './images/LOGO-023.png'
 import Logo2 from './images/LOGO-401.png'
 
@@ -23,12 +25,12 @@ function App() {
       mobile:'',
       position: '',
       company: '',
-      startDate: '',
-      endDate: '',
+      startDate: format(new Date(), 'dd/mm/yyyy'),
+      endDate: format(new Date(), 'dd/mm/yyyy'),
       description: '',
       education: '',
       grade: '',
-      educationEndDate: '',
+      educationEndDate: format(new Date(), 'dd/mm/yyyy'),
       educationDescription: '',
   })
   const [start, setStart] = useState(true)
@@ -63,12 +65,14 @@ function App() {
       />
       
         <Route path="/experience" element={<Experience 
-          setData={setData} change={change}
+          setData={setData} change={change} position={data.position} company={data.company}  
+          startDate={data.startDate} endDate={data.endDate} description={data.description}
            />}
       />
 
       <Route path="/education" element={<Education 
-          setData={setData} change={change}
+          setData={setData} change={change} education={data.education} 
+          grade={data.grade} educationEndDate={data.educationEndDate} educationDescription={data.educationDescription}
            />}
       />
       <Route path="/resume" element={<Resume 
@@ -81,7 +85,10 @@ function App() {
      <Resume 
       firstName={data.firstName} lastName={data.lastName} 
       about={data.about} email={data.email} mobile={data.mobile}
-      description={data.description} position={data.position}
+      description={data.description} position={data.position} 
+      company={data.company} startDate={data.startDate} endDate={data.endDate}
+      education={data.education} grade={data.grade} educationEndDate={data.educationEndDate}
+      educationDescription={data.educationDescription}
       />
 
       
