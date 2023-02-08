@@ -1,5 +1,7 @@
 import React from 'react'
 
+import AddExperience from '../components/AddExperience';
+
 import {useForm} from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -198,9 +200,13 @@ const Experience = (props) => {
                 {errors.description?.message && props.description.length == 0 && <img src={error} className='absolute top-[5.5rem] -right-1' alt='error validation' />}
             </div>
             <div className='w-[49.875em] mt-2 mb-[3.8em] bg-[#BCBCBC] ml-5 h-[1px]'></div>
+
+            
             
         <button className='bg-[#62A1EB] w-[18.0625em] h-[3em] 
-        ml-5 mb-[6.2rem] rounded-[4px] text-[#FFFFFF] font-[500]'>მეტი გამოცდილების დამატება</button>
+        ml-5 mb-[6.2rem] rounded-[4px] text-[#FFFFFF] font-[500]'
+        
+        >მეტი გამოცდილების დამატება</button>
         <div className='flex flex-row-reverse justify-between ml-5 pr-5 mb-[4.0625em]'>
             <a href='/education'><button type='submit' className=' w-[151px] h-[48px] bg-[#6B40E3] 
                 font-helvetica text-white text-[18px] 
