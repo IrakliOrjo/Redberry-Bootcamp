@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 const Home = () => {
   return (
     <div>
-    <div className='flex flex-col bg-[url("./images/background.png")] min-h-[100vh] 
+    <div className='flex flex-col bg-[url("./images/background.png")] min-h-[100vh] min-w-[1920px] 
       object-cover pt-[1.5625em] justify-center items-center' >
         <img className='absolute top-[25px] left-[70px] ' src={Logo} alt='logo'/>
         <div className='absolute top-[89px] w-[93%]  mx-auto  h-[2px] bg-[#1A1A1A]'></div>

@@ -125,3 +125,7 @@ select {
   background-position: 340px;
  
 }
+
+input[type="file"] {
+  all: none;
+}

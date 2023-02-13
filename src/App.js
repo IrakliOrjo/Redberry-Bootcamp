@@ -1,100 +1,138 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import Axios from 'axios'
+
+import {BrowserRouter, Routes, Route, Link,  Router} from 'react-router-dom'
+
+import { useMachine } from "@xstate/react";
+import { Machine, assign } from "xstate";
+import { useDebounce } from 'use-debounce';
 
 import { format } from 'date-fns'
 
 import Logo from './images/LOGO-023.png'
-import Logo2 from './images/LOGO-401.png'
+import Logo2 from './images/LOGO-401.png' 
 
 import PersonalInfo from './pages/PersonalInfo';
 import Experience from './pages/Experience';
 import Education from './pages/Education';
 import Resume from './components/Resume'
 import Home from './pages/Home'
+import Sum from './components/Sum'
+import AddExperience from './components/AddExperience';
+import FinalResume from './pages/FinalResume';
 
 
 
 function App() {
   const [data, setData] = useState({
-      firstName: '',
-      lastName: '',
-      isAvatar: false,
-      about: '',
-      email: '',
-      mobile:'',
-      position: '',
-      company: '',
-      startDate: format(new Date(), 'dd/mm/yyyy'),
-      endDate: format(new Date(), 'dd/mm/yyyy'),
-      description: '',
-      education: '',
-      grade: '',
-      educationEndDate: format(new Date(), 'dd/mm/yyyy'),
-      educationDescription: '',
-  })
-  const [start, setStart] = useState(true)
-
-  function change(event) {
-    setData(prevFormData => {
-            return {
-                ...prevFormData,
-                [event.target.name]: event.target.value
-            }
-        })
-        
-        
+  name: "",
+  surname: "",
+  email: "",
+  phone_number: "",
+  experiences: [
+    {
+      position: "",
+      employer: "",
+      start_date: "",
+      due_date: "",
+      description: ""
     }
-
-    function startNew () {
-      setStart(true)
+  ],
+  educations: [
+    {
+      institute: "",
+      degree_id: "",
+      due_date: "",
+      description: ""
     }
+  ],
+  image: "",
+  about_me: ""
+}
+)
+
+  const [imagePreview, setImagePreview] = useState(null);
+  const [final, setFinal] = useState(false)
+
+
+
+useEffect(() => {
+      const data = window.localStorage.getItem('CV_DATA')
+      setData(JSON.parse(data))
+    },[])
+
+    useEffect(() => {
+      window.localStorage.setItem('CV_DATA',JSON.stringify(data))
+    },[data])
+
+    useEffect(() => {
+      const data = window.localStorage.getItem('CV_FINAL')
+      setFinal(JSON.parse(data))
+    },[])
+
+    useEffect(() => {
+      window.localStorage.setItem('CV_FINAL',JSON.stringify(final))
+    },[final])
+
+    
+
+   
 
 
 
   return (
-    
+ 
     <div className="flex">
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/info" element={<PersonalInfo 
-          setData={setData} change={change}
-          firstName={data.firstName}  lastName={data.lastName}
-          about={data.about} email={data.email} mobile={data.mobile} />}
+          setData={setData} data={data}  imagePreview={imagePreview}
+          setImagePreview={setImagePreview}
+          />}
       />
       
         <Route path="/experience" element={<Experience 
-          setData={setData} change={change} position={data.position} company={data.company}  
-          startDate={data.startDate} endDate={data.endDate} description={data.description}
+          setData={setData}  data={data}
            />}
       />
 
+
       <Route path="/education" element={<Education 
-          setData={setData} change={change} education={data.education} 
+          setData={setData}  data={data} setFinal={setFinal} final={final}
+           />}
+      />
+
+      <Route path="/addmore" element={<AddExperience 
+          setData={setData}  education={data.education} 
           grade={data.grade} educationEndDate={data.educationEndDate} educationDescription={data.educationDescription}
            />}
       />
+
+      <Route path="/finalresume" element={<FinalResume 
+          setData={setData} data={data} setFinal={setFinal} final={final}
+           />}
+      />
+
       <Route path="/resume" element={<Resume 
-          setData={setData} change={change} 
+          setData={setData} data={data} setFinal={setFinal} final={final}
            />}
       />
 
       </Routes>
       </BrowserRouter>
-     <Resume 
-      firstName={data.firstName} lastName={data.lastName} 
-      about={data.about} email={data.email} mobile={data.mobile}
-      description={data.description} position={data.position} 
-      company={data.company} startDate={data.startDate} endDate={data.endDate}
-      education={data.education} grade={data.grade} educationEndDate={data.educationEndDate}
-      educationDescription={data.educationDescription}
-      />
+    
+    
+     {!final && <Resume 
+      data={data} imagePreview={imagePreview}
+      />}
 
       
       
       
     </div>
+
   );
 }
 
